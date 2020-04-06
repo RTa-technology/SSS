@@ -9,7 +9,10 @@ import traceback
 
 import discord
 from discord.ext import commands
+bot = MyBot(command_prefix="/")
 token = os.environ['DISCORD_BOT_TOKEN']
+
+
 
 class MyBot(commands.Bot):
     def __init__(self, command_prefix):
@@ -37,8 +40,4 @@ class MyBot(commands.Bot):
 
 
 
-if __name__ == '__main__':
-    currentpath = os.path.dirname(os.path.abspath(__file__))
-
-    bot = MyBot(command_prefix="/")
-    bot.run(token)
+bot.run(token)
