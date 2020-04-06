@@ -9,7 +9,7 @@ import traceback
 
 import discord
 from discord.ext import commands
-
+token = os.environ['DISCORD_BOT_TOKEN']
 
 class MyBot(commands.Bot):
     def __init__(self, command_prefix):
@@ -36,24 +36,9 @@ class MyBot(commands.Bot):
         await bot.change_presence(activity=discord.Game(name="リアクション集計中"))
 
 
-def read_token():
-    file = currentpath + "/token"
-    try:
-        for line in open(file, 'r'):
-            temp = line.replace(" ", "").strip().split("=")
-            token = temp[1]
-    except FileNotFoundError:
-        print("ファイルが見つかりません・・・。")
-        print(sys.exc_info())
-        return
-
-    return token
-
 
 if __name__ == '__main__':
     currentpath = os.path.dirname(os.path.abspath(__file__))
-
-    token = read_token()
 
     bot = MyBot(command_prefix="/")
     bot.run(token)
